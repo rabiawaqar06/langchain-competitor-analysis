@@ -19,6 +19,15 @@ Enter any business idea and location (e.g., "coffee shop in Islamabad"), and Mar
 - Analyze their positioning and strategies
 - Generate a professional PDF report with actionable insights
 
+<<<<<<< HEAD
+=======
+![Alt text](https://i.postimg.cc/T1VTgwBJ/langchain.png)
+![Alt text](https://i.postimg.cc/Fz44rv1d/langchain2.png)
+![Alt text](https://i.postimg.cc/NfQcZQWZ/langchain3.png)
+![Alt text](https://i.postimg.cc/8CfQLc6f/langchain4.png)
+
+
+>>>>>>> f68105fbe837d9c32c1fe98b51c05da796ddf84c
 ## Installation
 
 1. **Clone and setup**
@@ -121,4 +130,8 @@ MarketScout/
 
 - Python 3.8 or higher
 - Google Gemini API key ([Get one here](https://makersuite.google.com/app/apikey))
+<<<<<<< HEAD
 - Internet connection for competitor research
+=======
+- Internet connection for competitor research
+>>>>>>> f68105fbe837d9c32c1fe98b51c05da796ddf84c
