@@ -30,7 +30,7 @@ Enter any business idea and location (e.g., "coffee shop in Islamabad"), and Mar
 
 1. **Clone and setup**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/rabiawaqar06/langchain-competitor-analysis.git
    cd MarketScout
    python -m venv venv
    source venv/bin/activate  # Windows: venv\Scripts\activate
