@@ -130,3 +130,8 @@ MarketScout/
 - Google Gemini API key ([Get one here](https://makersuite.google.com/app/apikey))
 - Internet connection for competitor research
 
+## Sample Report
+
+A test PDF report has been included in this repository demonstrating the competitive analysis results for opening a coffee shop in Islamabad. This sample showcases the actual output format, competitor identification, and market insights that MarketScout generates.
+
+
