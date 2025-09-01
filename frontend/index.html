@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MarketScout - AI-powered competitive analysis tool using LangChain and Google Gemini. Research competitors automatically and generate professional PDF reports.">
+    <title>MarketScout - AI-Powered Competitive Analysis</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>MarketScout</span>
+                </div>
+                <nav class="nav">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        AI-Powered Competitive Analysis
+                        <span class="gradient-text">Made Simple</span>
+                    </h1>
+                    <p class="hero-description">
+                        Research your competitors automatically using advanced AI. Get professional insights 
+                        and detailed reports in minutes, not hours.
+                    </p>
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <i class="fas fa-robot"></i>
+                            <span>AI-Powered Research</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>Professional Reports</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Fast Results</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analysis Form -->
+        <section class="analysis-section">
+            <div class="container">
+                <div class="analysis-card">
+                    <div class="card-header">
+                        <h2>Start Your Competitive Analysis</h2>
+                        <p>Enter your business details to get started with AI-powered competitor research</p>
+                    </div>
+                    
+                    <form id="analysisForm" class="analysis-form">
+                        <div class="form-group">
+                            <label for="businessIdea">
+                                <i class="fas fa-lightbulb"></i>
+                                Business Idea
+                            </label>
+                            <input 
+                                type="text" 
+                                id="businessIdea" 
+                                name="businessIdea"
+                                placeholder="e.g., Local coffee shop, Digital marketing agency, Fitness studio"
+                                required
+                            >
+                            <small class="form-hint">Describe your business idea in a few words</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Target Location
+                            </label>
+                            <input 
+                                type="text" 
+                                id="location" 
+                                name="location"
+                                placeholder="e.g., New York City, San Francisco Bay Area, London"
+                                required
+                            >
+                            <small class="form-hint">Where do you plan to operate your business?</small>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <i class="fas fa-search"></i>
+                            Start Analysis
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Section -->
+        <section class="progress-section" id="progressSection" style="display: none;">
+            <div class="container">
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h3>Analysis in Progress</h3>
+                        <p id="progressText">Initializing analysis...</p>
+                    </div>
+                    
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    
+                    <div class="progress-steps">
+                        <div class="step active" id="step1">
+                            <i class="fas fa-search"></i>
+                            <span>Searching</span>
+                        </div>
+                        <div class="step" id="step2">
+                            <i class="fas fa-globe"></i>
+                            <span>Scraping</span>
+                        </div>
+                        <div class="step" id="step3">
+                            <i class="fas fa-brain"></i>
+                            <span>Analyzing</span>
+                        </div>
+                        <div class="step" id="step4">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>Generating Report</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection" style="display: none;">
+            <div class="container">
+                <div class="results-card">
+                    <div class="results-header">
+                        <h3>Analysis Complete!</h3>
+                        <p>Your competitive analysis is ready. Download the full report below.</p>
+                    </div>
+                    
+                    <div class="results-summary">
+                        <div class="summary-item">
+                            <div class="summary-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h4>Competitors Found</h4>
+                                <span id="competitorCount">0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-item">
+                            <div class="summary-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h4>Market Analysis</h4>
+                                <span>Comprehensive</span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-item">
+                            <div class="summary-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h4>Report Status</h4>
+                                <span>Ready</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="results-actions">
+                        <button class="download-btn" id="downloadBtn">
+                            <i class="fas fa-download"></i>
+                            Download PDF Report
+                        </button>
+                        <button class="new-analysis-btn" id="newAnalysisBtn">
+                            <i class="fas fa-plus"></i>
+                            Start New Analysis
+                        </button>
+                    </div>
+                    
+                    <!-- Analysis Preview -->
+                    <div class="analysis-preview">
+                        <h4>Analysis Preview</h4>
+                        <div class="preview-content" id="analysisPreview">
+                            <!-- Analysis content will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Powerful Features</h2>
+                    <p>Everything you need for comprehensive competitive analysis</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AI-Powered Research</h3>
+                        <p>Advanced LangChain agents powered by Google Gemini automatically research and analyze your competitors.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Web Scraping</h3>
+                        <p>Intelligent web scraping extracts business information, services, pricing, and contact details automatically.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>Professional Reports</h3>
+                        <p>Generate beautifully formatted PDF reports with competitor analysis, insights, and strategic recommendations.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Market Insights</h3>
+                        <p>Get detailed market analysis, gap identification, and strategic positioning recommendations.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Fast Results</h3>
+                        <p>Complete competitive analysis in minutes, not hours. Get actionable insights quickly.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Secure & Private</h3>
+                        <p>Your business data and API keys are handled securely with enterprise-grade privacy protection.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works" id="how-it-works">
+            <div class="container">
+                <div class="section-header">
+                    <h2>How It Works</h2>
+                    <p>Simple 4-step process to get your competitive analysis</p>
+                </div>
+                
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Enter Business Details</h3>
+                            <p>Provide your business idea and target location to get started.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>AI Research</h3>
+                            <p>Our AI agents search for competitors and scrape their websites for detailed information.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Smart Analysis</h3>
+                            <p>Advanced AI analyzes competitor data to identify market gaps and opportunities.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Get Your Report</h3>
+                            <p>Download a professional PDF report with insights and strategic recommendations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Error Modal -->
+        <div class="modal" id="errorModal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Error</h3>
+                    <button class="modal-close" id="modalClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="errorMessage">An error occurred during the analysis.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="modalOk">OK</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-chart-line"></i>
+                        <span>MarketScout</span>
+                    </div>
+                    <p>AI-powered competitive analysis for modern businesses.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="#features">AI Research</a></li>
+                        <li><a href="#features">Web Scraping</a></li>
+                        <li><a href="#features">PDF Reports</a></li>
+                        <li><a href="#features">Market Insights</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://makersuite.google.com/app/apikey" target="_blank">Get API Key</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 MarketScout. Built with LangChain and Google Gemini.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
